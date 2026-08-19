@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aprender rápido: mi ventaja en la era de la IA — Karla Assen</title>
+<meta name="description" content="Cómo la automatización con IA y el dominio de HTML cambiaron mi forma de trabajar e innovar, por Karla Assen.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Aprender rápido es mi ventaja competitiva — Karla Assen">
+<meta property="og:description" content="Cómo la IA y el dominio de HTML cambiaron mi forma de innovar y aprender cosas nuevas.">
+<meta property="og:image" content="og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Aprender rápido es mi ventaja competitiva — Karla Assen">
+<meta name="twitter:description" content="Cómo la IA y el dominio de HTML cambiaron mi forma de innovar y aprender cosas nuevas.">
+<meta name="twitter:image" content="og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0e14;
+    --bg-soft:#11151f;
+    --panel:#161b26;
+    --border:rgba(255,255,255,0.08);
+    --text:#e8ebf1;
+    --text-dim:#9aa3b5;
+    --accent:#6ee7b7;
+    --accent-2:#8b9dff;
+    --paper:#f7f6f2;
+    --paper-text:#1b1d22;
+    --paper-dim:#5c6270;
+    --code-bg:#0d1117;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--paper-text);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    letter-spacing:-0.01em;
+  }
+  code, .mono{
+    font-family:'JetBrains Mono',monospace;
+  }
+  a{color:inherit;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(110,231,183,0.16), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 90% 10%, rgba(139,157,255,0.14), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    padding:96px 24px 80px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(ellipse 100% 100% at 50% 0%, black 40%, transparent 85%);
+    pointer-events:none;
+  }
+  .blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(60px);
+    opacity:0.5;
+    pointer-events:none;
+    z-index:0;
+  }
+  .blob-a{
+    width:320px;height:320px;
+    background:radial-gradient(circle, var(--accent), transparent 70%);
+    top:-120px; left:-80px;
+    animation:drift1 16s ease-in-out infinite;
+  }
+  .blob-b{
+    width:280px;height:280px;
+    background:radial-gradient(circle, var(--accent-2), transparent 70%);
+    bottom:-100px; right:-60px;
+    animation:drift2 18s ease-in-out infinite;
+  }
+  @keyframes drift1{
+    0%,100%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(30px,20px) scale(1.08);}
+  }
+  @keyframes drift2{
+    0%,100%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(-25px,-15px) scale(1.1);}
+  }
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    position:relative;
+    z-index:1;
+  }
+  .kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    color:var(--accent);
+    background:rgba(110,231,183,0.08);
+    border:1px solid rgba(110,231,183,0.25);
+    padding:6px 12px;
+    border-radius:100px;
+    margin-bottom:28px;
+  }
+  .kicker::before{
+    content:"";
+    width:6px;height:6px;border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 8px var(--accent);
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1; transform:scale(1);}
+    50%{opacity:0.4; transform:scale(1.4);}
+  }
+  .hero h1{
+    font-size:clamp(32px, 5.2vw, 52px);
+    font-weight:700;
+    line-height:1.12;
+    margin:0 0 22px;
+    animation:riseIn 0.7s ease both;
+  }
+  .hero h1 .grad{
+    background:linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p.lede{
+    font-size:18px;
+    color:var(--text-dim);
+    max-width:600px;
+    margin:0 0 36px;
+    animation:riseIn 0.7s ease 0.1s both;
+  }
+  @keyframes riseIn{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .byline{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-size:14px;
+    color:var(--text-dim);
+    animation:riseIn 0.7s ease 0.2s both;
+  }
+  .avatar{
+    width:42px;height:42px;border-radius:50%;
+    background:linear-gradient(135deg, var(--accent), var(--accent-2));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    color:#0b0e14;
+    font-size:15px;
+    flex-shrink:0;
+  }
+  .byline strong{color:var(--text);font-weight:600;}
+  .byline .dot{opacity:0.5;}
+
+  /* ---------- ARTICLE BODY ---------- */
+  article{
+    max-width:680px;
+    margin:0 auto;
+    padding:64px 24px 40px;
+  }
+  article > p{
+    font-size:17.5px;
+    margin:0 0 22px;
+    color:var(--paper-text);
+  }
+  article > p.intro{
+    font-size:20px;
+    color:#333844;
+    font-weight:500;
+    margin-bottom:34px;
+  }
+  h2.section{
+    font-size:26px;
+    font-weight:700;
+    margin:56px 0 18px;
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+  }
+  h2.section .num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;
+    font-weight:500;
+    color:var(--paper-dim);
+    background:rgba(0,0,0,0.05);
+    border-radius:6px;
+    padding:3px 8px;
+  }
+  .callout{
+    background:#eef2ff;
+    border-left:3px solid var(--accent-2);
+    padding:16px 20px;
+    border-radius:0 10px 10px 0;
+    font-size:15.5px;
+    color:#2b2f3a;
+    margin:24px 0;
+  }
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in-view{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* ---------- BROWSER MOCK ---------- */
+  .browser{
+    background:var(--code-bg);
+    border-radius:12px;
+    overflow:hidden;
+    margin:28px 0 8px;
+    box-shadow:0 20px 40px -18px rgba(0,0,0,0.45);
+    border:1px solid rgba(255,255,255,0.06);
+  }
+  .browser-bar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:11px 14px;
+    background:#161b22;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .browser-bar .dot2{width:10px;height:10px;border-radius:50%;}
+  .browser-bar .d1{background:#ff5f56;}
+  .browser-bar .d2{background:#ffbd2e;}
+  .browser-bar .d3{background:#27c93f;}
+  .browser-bar .url{
+    margin-left:10px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:#6e7681;
+    background:#0d1117;
+    padding:4px 10px;
+    border-radius:6px;
+    flex:1;
+    max-width:280px;
+  }
+  pre.code{
+    margin:0;
+    padding:20px 22px 24px;
+    overflow-x:auto;
+    font-size:13px;
+    line-height:1.7;
+  }
+  pre.code code{color:#c9d1d9;}
+  .tok-tag{color:#7ee787;}
+  .tok-attr{color:#79c0ff;}
+  .tok-str{color:#a5d6ff;}
+  .tok-com{color:#6e7681;font-style:italic;}
+  .cursor{
+    display:inline-block;
+    width:7px;height:14px;
+    background:var(--accent);
+    margin-left:2px;
+    vertical-align:middle;
+    animation:blink 0.9s step-end infinite;
+  }
+  @keyframes blink{
+    50%{opacity:0;}
+  }
+
+  /* ---------- SKILL TAGS ---------- */
+  .tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:20px 0 8px;
+  }
+  .tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    padding:6px 12px;
+    background:#f0efe9;
+    border:1px solid rgba(0,0,0,0.08);
+    border-radius:100px;
+    color:#40454f;
+    transition:transform 0.2s ease, background 0.2s ease;
+  }
+  .tag:hover{
+    transform:translateY(-3px);
+    background:#e8ecff;
+  }
+
+  /* ---------- MINI GAME (PAC-MAN) ---------- */
+  .game-wrap{
+    background:var(--code-bg);
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,0.06);
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+    box-shadow:0 20px 40px -18px rgba(0,0,0,0.45);
+    margin:28px 0 8px;
+  }
+  .game-hud{
+    display:flex;
+    justify-content:space-between;
+    width:100%;
+    max-width:420px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--text-dim);
+  }
+  .game-hud strong{ color:var(--text); }
+  .game-canvas-holder{
+    position:relative;
+    width:100%;
+    max-width:420px;
+  }
+  #pacCanvas{
+    background:#05070c;
+    border-radius:10px;
+    display:block;
+    touch-action:none;
+    width:100%;
+    height:auto;
+  }
+  .game-overlay{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:12px;
+    background:rgba(5,7,12,0.9);
+    border-radius:10px;
+    color:var(--text);
+    text-align:center;
+    padding:20px;
+  }
+  .game-overlay.hidden{ display:none; }
+  .game-overlay h3{ font-family:'Space Grotesk',sans-serif; font-size:19px; margin:0; }
+  .game-overlay p{ font-size:13px; color:var(--text-dim); margin:0; max-width:280px; }
+  .game-btn{
+    background:linear-gradient(90deg, var(--accent), var(--accent-2));
+    color:#0b0e14;
+    border:none;
+    font-weight:600;
+    font-size:14px;
+    padding:10px 22px;
+    border-radius:100px;
+    cursor:pointer;
+  }
+  .dpad{
+    display:grid;
+    grid-template-columns:44px 44px 44px;
+    grid-template-rows:44px 44px 44px;
+    gap:6px;
+  }
+  .dpad button{
+    background:#1c2130;
+    border:1px solid rgba(255,255,255,0.1);
+    color:var(--text);
+    font-size:18px;
+    border-radius:10px;
+    cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .dpad button:active{ background:#2c3244; }
+  .dpad .up{ grid-column:2; grid-row:1; }
+  .dpad .left{ grid-column:1; grid-row:2; }
+  .dpad .stop{ grid-column:2; grid-row:2; visibility:hidden; }
+  .dpad .right{ grid-column:3; grid-row:2; }
+  .dpad .down{ grid-column:2; grid-row:3; }
+  .game-hint{ font-size:12px; color:var(--text-dim); font-family:'JetBrains Mono',monospace; }
+
+  /* ---------- ROBOT MASCOT (arriba, en el hero) ---------- */
+  .mascot-row{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+    margin-bottom:30px;
+  }
+  .speech-row{
+    position:relative;
+    background:#1c2130;
+    border:1px solid rgba(255,255,255,0.12);
+    color:var(--text);
+    font-size:13.5px;
+    padding:11px 16px;
+    border-radius:14px;
+    max-width:300px;
+    transition:opacity 0.2s ease, transform 0.2s ease;
+  }
+  .speech-row::after{
+    content:"";
+    position:absolute;
+    left:-6px;
+    top:50%;
+    transform:translateY(-50%) rotate(45deg);
+    width:12px;height:12px;
+    background:#1c2130;
+    border-left:1px solid rgba(255,255,255,0.12);
+    border-bottom:1px solid rgba(255,255,255,0.12);
+  }
+  .speech-row.pop{
+    animation:pop 0.35s ease;
+  }
+  @keyframes pop{
+    0%{transform:scale(0.85); opacity:0.4;}
+    100%{transform:scale(1); opacity:1;}
+  }
+  .bot-ring{
+    position:relative;
+    flex-shrink:0;
+  }
+  .bot-ring::before{
+    content:"";
+    position:absolute;
+    inset:-8px;
+    border-radius:50%;
+    border:1.5px dashed rgba(110,231,183,0.35);
+    animation:spin 12s linear infinite;
+  }
+  @keyframes spin{
+    to{transform:rotate(360deg);}
+  }
+  .bot{
+    display:block;
+    cursor:pointer;
+    user-select:none;
+    -webkit-tap-highlight-color:transparent;
+    animation:waveIn 0.6s ease 0.35s both, float 3s ease-in-out 0.95s infinite;
+  }
+  @keyframes waveIn{
+    from{opacity:0; transform:scale(0.5) rotate(-18deg);}
+    to{opacity:1; transform:scale(1) rotate(0);}
+  }
+  .bot:active{ animation:waveIn 0.6s ease both; }
+  .bot.jump{ animation:jump 0.5s ease !important; }
+  @keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-7px);}
+  }
+  @keyframes jump{
+    0%{transform:translateY(0) rotate(0);}
+    30%{transform:translateY(-22px) rotate(-8deg);}
+    60%{transform:translateY(0) rotate(6deg);}
+    100%{transform:translateY(0) rotate(0);}
+  }
+  .bot .eye{
+    animation:blinkEye 4.5s ease-in-out infinite;
+    transform-origin:center;
+  }
+  .bot .eye.right{ animation-delay:0.1s; }
+  @keyframes blinkEye{
+    0%,92%,100%{transform:scaleY(1);}
+    95%{transform:scaleY(0.1);}
+  }
+  .bot .antenna-ball{
+    animation:wiggle 2.4s ease-in-out infinite;
+    transform-origin:8px 32px;
+  }
+  @keyframes wiggle{
+    0%,100%{transform:rotate(0deg);}
+    50%{transform:rotate(10deg);}
+  }
+
+  /* ---------- CLOSING / CTA ---------- */
+  .closing{
+    background:var(--bg-soft);
+    color:var(--text);
+    margin-top:24px;
+    padding:72px 24px;
+  }
+  .closing .wrap2{
+    max-width:680px;
+    margin:0 auto;
+    text-align:center;
+  }
+  .closing h2{
+    font-size:28px;
+    margin:0 0 16px;
+  }
+  .closing p{
+    color:var(--text-dim);
+    font-size:16px;
+    max-width:520px;
+    margin:0 auto 32px;
+  }
+  .cta-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:linear-gradient(90deg, var(--accent), var(--accent-2));
+    color:#0b0e14;
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+    padding:14px 26px;
+    border-radius:100px;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow:0 8px 24px -8px rgba(110,231,183,0.4);
+  }
+  .cta-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px -8px rgba(110,231,183,0.55);
+  }
+  .cta-btn svg{width:16px;height:16px;}
+
+  footer{
+    padding:28px 24px 40px;
+    text-align:center;
+    font-size:13px;
+    color:var(--text-dim);
+    background:var(--bg-soft);
+  }
+  footer .fname{color:var(--text);font-weight:600;}
+
+  @media (max-width:600px){
+    .hero{padding:72px 20px 56px;}
+    article{padding:48px 20px 30px;}
+    .closing{padding:56px 20px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="wrap">
+      <div class="mascot-row">
+        <div class="bot-ring">
+          <svg class="bot" id="bot" width="64" height="64" viewBox="0 0 64 64" fill="none" aria-label="Robot animado, haz clic para interactuar">
+            <line x1="32" y1="10" x2="32" y2="2" stroke="#8b9dff" stroke-width="3" stroke-linecap="round"/>
+            <circle class="antenna-ball" cx="32" cy="4" r="4" fill="#6ee7b7"/>
+            <rect x="12" y="10" width="40" height="34" rx="12" fill="#1c2130" stroke="#2c3244" stroke-width="2"/>
+            <rect x="18" y="20" width="28" height="16" rx="8" fill="#0d1117"/>
+            <ellipse class="eye left" cx="27" cy="28" rx="3.2" ry="4" fill="#6ee7b7"/>
+            <ellipse class="eye right" cx="37" cy="28" rx="3.2" ry="4" fill="#8b9dff"/>
+            <rect x="6" y="24" width="6" height="12" rx="3" fill="#2c3244"/>
+            <rect x="52" y="24" width="6" height="12" rx="3" fill="#2c3244"/>
+            <rect x="20" y="46" width="24" height="14" rx="6" fill="#1c2130" stroke="#2c3244" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="speech-row" id="speech">¡Hola! Soy el copiloto de IA de Karla. Haz clic, es gracioso.</div>
+      </div>
+      <span class="kicker">IA aplicada · Aprendizaje continuo</span>
+      <h1>Aprender rápido es mi <span class="grad">ventaja competitiva</span></h1>
+      <p class="lede">Notas sobre cómo la inteligencia artificial y un poco de terquedad me han permitido resolver problemas que hace un año no sabía que podía resolver: desde automatizar procesos hasta programar la página que estás leyendo.</p>
+      <div class="byline">
+        <div class="avatar">KA</div>
+        <div>
+          <strong>Karla Assen</strong>
+          <span class="dot"> · </span>
+          <span>github.com/kabbi-al</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <article>
+    <p class="intro">Nunca me he definido por lo que ya sé hacer, sino por lo rápido que puedo aprender lo que todavía no sé. Ese ha sido, sin planearlo, el hilo conductor de los últimos meses.</p>
+
+    <p>Trabajo en un momento en el que las herramientas cambian más rápido de lo que cambian los manuales. La IA generativa dejó de ser una curiosidad y se convirtió en una compañera de trabajo diaria: para investigar, para automatizar, para programar. Quien espera el curso perfecto o el momento ideal para aprender simplemente llega tarde. Yo preferí aprender haciendo, con errores incluidos.</p>
+
+    <h2 class="section reveal"><span class="num">01</span> Automatizar el research de candidatos</h2>
+
+    <p class="reveal">Una de las partes más valiosas de cualquier proceso de selección (y también de las más lentas) es la investigación previa: entender la trayectoria de un candidato, cruzar información e identificar señales relevantes antes de la primera conversación. Hacerlo bien a mano puede tomar horas por persona.</p>
+
+    <p class="reveal">Me propuse usar IA para comprimir ese tiempo sin perder criterio. Diseñé un flujo que combina búsqueda, síntesis y estructuración de información con asistentes de IA, de forma que lo que antes tomaba horas de research disperso ahora llega ordenado, resumido y listo para tomar decisiones en minutos.</p>
+
+    <div class="callout reveal">Lo importante no fue la herramienta en sí, sino aprender a diseñar el proceso: qué preguntarle a la IA, cómo verificar lo que devuelve y dónde sigue siendo insustituible el criterio humano.</div>
+
+    <p class="reveal">El resultado no fue solo tiempo ganado. Fue más tiempo para lo que de verdad requiere a una persona: la conversación, la evaluación de fit cultural, la intuición que ningún modelo reemplaza todavía.</p>
+
+    <h2 class="section reveal"><span class="num">02</span> Esta misma página la construí yo</h2>
+
+    <p class="reveal">El segundo terreno donde decidí aprender rápido fue el desarrollo web. No vengo de una carrera técnica en programación, pero entendí que saber construir algo con tus propias manos, aunque sea un sitio sencillo, cambia por completo la forma en que te comunicas con quienes sí lo hacen todos los días.</p>
+
+    <p class="reveal">Con asistentes de código como Claude y Copilot como guía, pasé de leer HTML sin entenderlo a maquetar páginas completas: estructura semántica, diseño responsive, algo de animación, buen contraste, jerarquía visual. La página que estás leyendo ahora mismo es prueba de eso.</p>
+
+    <div class="browser reveal">
+      <div class="browser-bar">
+        <span class="dot2 d1"></span><span class="dot2 d2"></span><span class="dot2 d3"></span>
+        <span class="url">karla-assen.dev</span>
+      </div>
+      <pre class="code"><code><span class="tok-com">&lt;!-- Lo que antes era un lenguaje ajeno, hoy es una herramienta más --&gt;</span>
+<span class="tok-tag">&lt;section</span> <span class="tok-attr">class=</span><span class="tok-str">"aprendizaje"</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;h2&gt;</span>Curiosidad + IA<span class="tok-tag">&lt;/h2&gt;</span>
+  <span class="tok-tag">&lt;p&gt;</span>Aprender a construir, no solo a usar.<span class="tok-tag">&lt;/p&gt;</span>
+<span class="tok-tag">&lt;/section&gt;</span><span class="cursor"></span></code></pre>
+    </div>
+
+    <div class="tags reveal">
+      <span class="tag">HTML5 semántico</span>
+      <span class="tag">CSS / diseño responsive</span>
+      <span class="tag">Claude &amp; Copilot</span>
+      <span class="tag">Automatización con IA</span>
+      <span class="tag">Prompting aplicado</span>
+    </div>
+
+    <h2 class="section reveal"><span class="num">03</span> Bonus: un mini Pac-Man, porque se podía</h2>
+
+    <p class="reveal">Aprender a programar también sirve para hacer cosas sin más razón que las ganas. Este es un Pac-Man reducido, hecho con canvas y JavaScript, directo en esta misma página. Usa las flechas del teclado o los botones.</p>
+
+    <div class="game-wrap reveal">
+      <div class="game-hud">
+        <span>Puntos: <strong id="gScore">0</strong></span>
+        <span>Vidas: <strong id="gLives">3</strong></span>
+      </div>
+      <div class="game-canvas-holder">
+        <canvas id="pacCanvas" width="420" height="364"></canvas>
+        <div class="game-overlay" id="gOverlay">
+          <h3>Mini Pac-Man</h3>
+          <p>Come todos los puntos y evita a los fantasmas.</p>
+          <button class="game-btn" id="gStart">Jugar</button>
+        </div>
+      </div>
+      <div class="dpad">
+        <button class="up" type="button" data-dir="up">↑</button>
+        <button class="left" type="button" data-dir="left">←</button>
+        <span class="stop"></span>
+        <button class="right" type="button" data-dir="right">→</button>
+        <button class="down" type="button" data-dir="down">↓</button>
+      </div>
+      <span class="game-hint">También funciona con las flechas del teclado</span>
+    </div>
+
+    <h2 class="section reveal"><span class="num">04</span> La verdadera habilidad: aprender a aprender</h2>
+
+    <p class="reveal">Ninguna de las dos cosas, ni automatizar research ni programar una web, era algo que supiera hacer hace poco tiempo. Lo que sí tenía era la disposición de sentarme, probar, romper cosas y volver a intentarlo con ayuda de la IA como acelerador, no como atajo.</p>
+
+    <p class="reveal">Creo que esa es la habilidad que de verdad importa hoy: no acumular certificaciones ni memorizar herramientas que en un año serán distintas, sino desarrollar la capacidad de adaptarse rápido cuando el terreno cambia. La IA no vino a reemplazar esa curiosidad, vino a darle esteroides.</p>
+
+    <p class="reveal">Sigo aprendiendo ahora mismo, mientras escribo esto, y esa es, honestamente, la parte que más disfruto.</p>
+  </article>
+
+  <section class="closing">
+    <div class="wrap2">
+      <h2>¿Quieres ver más de lo que construyo?</h2>
+      <p>En mi portfolio de GitHub voy documentando estos proyectos: desde automatizaciones con IA hasta piezas web como esta.</p>
+      <a class="cta-btn" href="https://kabbi-al.github.io/Karla_Assen/" target="_blank" rel="noopener">
+        Ver mi portfolio en GitHub
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="fname">Karla Assen</span> · <span class="mono">github.com/kabbi-al</span>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    var revealEls = document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('in-view');
+            io.unobserve(entry.target);
+          }
+        });
+      }, {threshold:0.15});
+      revealEls.forEach(function(el){ io.observe(el); });
+    } else {
+      revealEls.forEach(function(el){ el.classList.add('in-view'); });
+    }
+
+    // Interactive mascot
+    var bot = document.getElementById('bot');
+    var speech = document.getElementById('speech');
+    var lines = [
+      "¿Ya probaste apagarlo y volverlo a encender? Yo tampoco, uso IA.",
+      "Cargando personalidad... 100% café, 0% Stack Overflow.",
+      "Aprendí HTML más rápido de lo que aprendí a estacionar en paralelo.",
+      "Beep boop. Aprendiendo cosas nuevas desde que Karla me creó.",
+      "Si esta página se ve bien, fue la IA. Si algo falla, también fue la IA.",
+      "Alerta: nivel de curiosidad en aumento.",
+      "Dato curioso: no tengo manos, pero ayudé a programar esto igual."
+    ];
+    var last = -1;
+    bot.addEventListener('click', function(){
+      var idx;
+      do { idx = Math.floor(Math.random() * lines.length); } while (idx === last && lines.length > 1);
+      last = idx;
+      speech.textContent = lines[idx];
+      speech.classList.remove('pop');
+      void speech.offsetWidth;
+      speech.classList.add('pop');
+      bot.classList.remove('jump');
+      void bot.getBBox();
+      bot.classList.add('jump');
+      setTimeout(function(){ bot.classList.remove('jump'); }, 500);
+    });
+  </script>
+
+  <script>
+  (function(){
+    var MAZE_ROWS = [
+      "###############",
+      "#......#......#",
+      "#.####.#.####.#",
+      "#.#...........#",
+      "#.#.##.#.##.#.#",
+      "#.............#",
+      "#.###.#.###.#.#",
+      "#.....P.......#",
+      "#.###.#.###.#.#",
+      "#.............#",
+      "#.#.##G#.##.#.#",
+      "#.#...........#",
+      "###############"
+    ];
+    var ROWS = MAZE_ROWS.length, COLS = MAZE_ROWS[0].length, CELL = 28;
+    var canvas = document.getElementById('pacCanvas');
+    if(!canvas || !canvas.getContext) return;
+    var ctx = canvas.getContext('2d');
+    canvas.width = COLS*CELL;
+    canvas.height = ROWS*CELL;
+
+    var pacStart=null, ghostStarts=[];
+    for(var r0=0;r0<ROWS;r0++){
+      for(var c0=0;c0<COLS;c0++){
+        var ch = MAZE_ROWS[r0][c0];
+        if(ch==='P') pacStart = {r:r0,c:c0};
+        if(ch==='G') ghostStarts.push({r:r0,c:c0});
+      }
+    }
+    ghostStarts.push({r:3,c:13});
+
+    var totalDots = 0;
+    for(var r1=0;r1<ROWS;r1++) for(var c1=0;c1<COLS;c1++) if(MAZE_ROWS[r1][c1]==='.') totalDots++;
+
+    var DIRS = { up:{dr:-1,dc:0}, down:{dr:1,dc:0}, left:{dr:0,dc:-1}, right:{dr:0,dc:1} };
+    function opposite(dir){ return {up:'down',down:'up',left:'right',right:'left'}[dir]; }
+
+    var grid, pac, ghosts, score, lives, dotsLeft, running, lastTick, mouthPhase;
+    var tickMs = 160;
+
+    function buildGrid(){
+      var g = [];
+      for(var r=0;r<ROWS;r++){
+        var row=[];
+        for(var c=0;c<COLS;c++){
+          var ch = MAZE_ROWS[r][c];
+          if(ch==='#') row.push(0);
+          else if(ch==='.') row.push(1);
+          else row.push(2);
+        }
+        g.push(row);
+      }
+      return g;
+    }
+
+    function resetPositions(){
+      pac = {r:pacStart.r, c:pacStart.c, dir:'left', nextDir:'left'};
+      ghosts = ghostStarts.map(function(g,i){
+        return {r:g.r, c:g.c, dir:'up', color: i===0 ? '#8b9dff' : '#f97ce0'};
+      });
+    }
+
+    function updateHud(){
+      document.getElementById('gScore').textContent = score;
+      document.getElementById('gLives').textContent = lives;
+    }
+
+    function newGame(){
+      grid = buildGrid();
+      dotsLeft = totalDots;
+      score = 0;
+      lives = 3;
+      mouthPhase = 0;
+      resetPositions();
+      updateHud();
+    }
+
+    function isWalkable(r,c){
+      if(r<0||r>=ROWS||c<0||c>=COLS) return false;
+      return grid[r][c] !== 0;
+    }
+
+    function tryMove(entity, dir){
+      var d = DIRS[dir];
+      var nr = entity.r + d.dr, nc = entity.c + d.dc;
+      if(isWalkable(nr,nc)){ entity.r=nr; entity.c=nc; entity.dir=dir; return true; }
+      return false;
+    }
+
+    function stepPac(){
+      if(pac.nextDir !== pac.dir && tryMove(pac, pac.nextDir)){
+        // moved with new direction
+      } else {
+        tryMove(pac, pac.dir);
+      }
+      if(grid[pac.r][pac.c] === 1){
+        grid[pac.r][pac.c] = 2;
+        score += 10;
+        dotsLeft--;
+        updateHud();
+        if(dotsLeft <= 0) endGame(true);
+      }
+    }
+
+    function stepGhosts(){
+      ghosts.forEach(function(g){
+        var opts = Object.keys(DIRS).filter(function(d){
+          if(d === opposite(g.dir)) return false;
+          var dd = DIRS[d];
+          return isWalkable(g.r+dd.dr, g.c+dd.dc);
+        });
+        if(opts.length === 0){
+          opts = Object.keys(DIRS).filter(function(d){
+            var dd = DIRS[d];
+            return isWalkable(g.r+dd.dr, g.c+dd.dc);
+          });
+        }
+        var chosen;
+        if(Math.random() < 0.55 && opts.length){
+          var best=null, bestDist=Infinity;
+          opts.forEach(function(d){
+            var dd=DIRS[d];
+            var nr=g.r+dd.dr, nc=g.c+dd.dc;
+            var dist=Math.abs(nr-pac.r)+Math.abs(nc-pac.c);
+            if(dist<bestDist){ bestDist=dist; best=d; }
+          });
+          chosen = best;
+        } else {
+          chosen = opts[Math.floor(Math.random()*opts.length)];
+        }
+        if(chosen) tryMove(g, chosen);
+      });
+    }
+
+    function checkCollision(){
+      for(var i=0;i<ghosts.length;i++){
+        if(ghosts[i].r===pac.r && ghosts[i].c===pac.c){
+          lives--;
+          updateHud();
+          if(lives<=0){ endGame(false); }
+          else { resetPositions(); }
+          return;
+        }
+      }
+    }
+
+    function draw(){
+      ctx.fillStyle = '#05070c';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      for(var r=0;r<ROWS;r++){
+        for(var c=0;c<COLS;c++){
+          var x=c*CELL, y=r*CELL;
+          if(grid[r][c]===0){
+            ctx.fillStyle = 'rgba(139,157,255,0.16)';
+            ctx.fillRect(x+1,y+1,CELL-2,CELL-2);
+          } else if(grid[r][c]===1){
+            ctx.fillStyle = '#6ee7b7';
+            ctx.beginPath();
+            ctx.arc(x+CELL/2, y+CELL/2, 3, 0, Math.PI*2);
+            ctx.fill();
+          }
+        }
+      }
+      mouthPhase = (mouthPhase + 0.35) % (Math.PI/2);
+      var mouth = Math.abs(Math.sin(mouthPhase))*0.22 + 0.04;
+      var angleMap = {right:0, down:0.5*Math.PI, left:Math.PI, up:1.5*Math.PI};
+      var baseAngle = angleMap[pac.dir] || 0;
+      var px = pac.c*CELL+CELL/2, py = pac.r*CELL+CELL/2;
+      ctx.fillStyle = '#ffd54f';
+      ctx.beginPath();
+      ctx.moveTo(px,py);
+      ctx.arc(px,py,CELL/2-2, baseAngle+mouth*Math.PI, baseAngle+(2-mouth)*Math.PI);
+      ctx.closePath();
+      ctx.fill();
+      ghosts.forEach(function(g){
+        var gx=g.c*CELL+CELL/2, gy=g.r*CELL+CELL/2, gr=CELL/2-3;
+        ctx.fillStyle = g.color;
+        ctx.beginPath();
+        ctx.arc(gx,gy-2,gr,Math.PI,0,false);
+        ctx.lineTo(gx+gr, gy+gr-2);
+        ctx.lineTo(gx+gr*0.4, gy+gr-6);
+        ctx.lineTo(gx, gy+gr-2);
+        ctx.lineTo(gx-gr*0.4, gy+gr-6);
+        ctx.lineTo(gx-gr, gy+gr-2);
+        ctx.closePath();
+        ctx.fill();
+        ctx.fillStyle = '#fff';
+        ctx.beginPath(); ctx.arc(gx-5,gy-4,3,0,Math.PI*2); ctx.arc(gx+5,gy-4,3,0,Math.PI*2); ctx.fill();
+        ctx.fillStyle = '#12151c';
+        ctx.beginPath(); ctx.arc(gx-5,gy-4,1.4,0,Math.PI*2); ctx.arc(gx+5,gy-4,1.4,0,Math.PI*2); ctx.fill();
+      });
+    }
+
+    function loop(ts){
+      if(!running) return;
+      if(!lastTick) lastTick = ts;
+      if(ts - lastTick > tickMs){
+        stepPac();
+        if(running){ stepGhosts(); checkCollision(); }
+        lastTick = ts;
+      }
+      draw();
+      if(running) requestAnimationFrame(loop);
+    }
+
+    function endGame(won){
+      running = false;
+      var overlay = document.getElementById('gOverlay');
+      overlay.classList.remove('hidden');
+      overlay.innerHTML =
+        '<h3>'+(won ? '¡Ganaste!' : 'Te atraparon')+'</h3>' +
+        '<p>'+(won ? 'Aprendiste rápido incluso esto. Puntos: '+score : 'Puntuación final: '+score)+'</p>' +
+        '<button class="game-btn" id="gStart" type="button">Jugar de nuevo</button>';
+      bindStart();
+    }
+
+    function bindStart(){
+      var btn = document.getElementById('gStart');
+      if(btn){
+        btn.addEventListener('click', function(){
+          document.getElementById('gOverlay').classList.add('hidden');
+          newGame();
+          running = true;
+          lastTick = null;
+          requestAnimationFrame(loop);
+        });
+      }
+    }
+
+    newGame();
+    running = false;
+    bindStart();
+    draw();
+
+    window.addEventListener('keydown', function(e){
+      var map = {ArrowUp:'up', ArrowDown:'down', ArrowLeft:'left', ArrowRight:'right'};
+      var dir = map[e.key];
+      if(dir){
+        if(running) e.preventDefault();
+        pac.nextDir = dir;
+      }
+    }, {passive:false});
+
+    var dpadButtons = document.querySelectorAll('.dpad button[data-dir]');
+    for(var i=0;i<dpadButtons.length;i++){
+      dpadButtons[i].addEventListener('click', function(){
+        pac.nextDir = this.getAttribute('data-dir');
+      });
+    }
+  })();
+  </script>
+
+</body>
+</html>
